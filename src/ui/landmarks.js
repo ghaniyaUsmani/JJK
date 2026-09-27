@@ -27,11 +27,11 @@ export function drawLandmarks(ctx, hands, width, height, opts = {}) {
     if (!pts || pts.length < 21) continue;
 
     // Bones
-    ctx.strokeStyle = 'rgba(176, 128, 255, 0.85)';
+    ctx.strokeStyle = 'rgba(240, 97, 107, 0.85)';
     ctx.lineWidth = boneWidth;
     ctx.lineCap = 'round';
     if (glow) {
-      ctx.shadowColor = 'rgba(122, 60, 255, 0.9)';
+      ctx.shadowColor = 'rgba(196, 48, 61, 0.9)';
       ctx.shadowBlur = 12;
     }
     for (const [a, b] of CONNECTIONS) {
@@ -49,7 +49,7 @@ export function drawLandmarks(ctx, hands, width, height, opts = {}) {
       const [x, y] = xy(pts[i]);
       const isTip = [4, 8, 12, 16, 20].includes(i);
       ctx.beginPath();
-      ctx.fillStyle = isTip ? '#B080FF' : 'rgba(122, 60, 255, 0.95)';
+      ctx.fillStyle = isTip ? '#F0616B' : 'rgba(196, 48, 61, 0.95)';
       ctx.arc(x, y, isTip ? tipRadius : jointRadius, 0, Math.PI * 2);
       ctx.fill();
     }

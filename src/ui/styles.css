@@ -5,27 +5,27 @@
 
 :root {
   /* Surfaces */
-  --bg:            #0A0A0C;
-  --bg-elev:       #131318;
-  --surface:       #1A1A22;
-  --surface-hi:    #21212C;
-  --border:        #2A2A35;
-  --border-hi:     #3A3A48;
+  --bg:            #0C0810;
+  --bg-elev:       #17101A;
+  --surface:       #1E1522;
+  --surface-hi:    #271A2A;
+  --border:        #3A2530;
+  --border-hi:     #4D303C;
 
   /* Text */
-  --text:          #EDEDF0;
-  --text-muted:    #8A8A99;
-  --text-dim:      #55555F;
+  --text:          #F2EAEA;
+  --text-muted:    #A88C90;
+  --text-dim:      #5C4550;
 
-  /* Accents */
-  --accent:        #7A3CFF;
-  --accent-hi:     #B080FF;
-  --accent-dim:    #4A2299;
-  --accent-glow:   rgba(122, 60, 255, 0.35);
-  --accent-glow-2: rgba(176, 128, 255, 0.5);
+  /* Accents — crimson cursed-energy glow, sampled from jjk.jpg */
+  --accent:        #C4303D;
+  --accent-hi:     #F0616B;
+  --accent-dim:    #6E1620;
+  --accent-glow:   rgba(196, 48, 61, 0.35);
+  --accent-glow-2: rgba(240, 97, 107, 0.5);
 
-  --danger:        #FF4D5E;
-  --danger-glow:   rgba(255, 77, 94, 0.28);
+  --danger:        #FF6B45;
+  --danger-glow:   rgba(255, 107, 69, 0.28);
   --success:       #46E39A;
   --warn:          #FFB84D;
 
@@ -89,9 +89,9 @@ button {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 15% 20%, rgba(122, 60, 255, 0.10), transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(122, 60, 255, 0.08), transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(176, 128, 255, 0.04), transparent 60%),
+    radial-gradient(circle at 15% 20%, rgba(196, 48, 61, 0.10), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(196, 48, 61, 0.08), transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(240, 97, 107, 0.04), transparent 60%),
     var(--bg);
   filter: blur(0px);
 }
@@ -193,16 +193,7 @@ button {
   color: inherit;
   cursor: pointer;
 }
-.brand:hover .brand-mark { color: var(--accent-hi); }
 .brand:hover { color: var(--accent-hi); }
-
-.brand .brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px; height: 22px;
-  color: var(--accent-hi);
-}
 
 .brand .slash {
   color: var(--text-dim);
@@ -421,7 +412,7 @@ button {
 .btn-ghost:hover:not(:disabled) {
   border-color: var(--accent);
   color: var(--text);
-  background: rgba(122, 60, 255, 0.08);
+  background: rgba(196, 48, 61, 0.08);
 }
 
 .btn-danger {
@@ -452,7 +443,7 @@ button {
   justify-content: center;
   padding: 24px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(122, 60, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(196, 48, 61, 0.05) 0%, transparent 60%),
     var(--bg);
 }
 
@@ -562,13 +553,6 @@ button {
   text-align: center;
   padding: 40px;
   color: var(--text-muted);
-}
-
-.empty .hex {
-  width: 88px;
-  height: 100px;
-  color: var(--accent);
-  opacity: 0.5;
 }
 
 .empty h2 {
@@ -685,16 +669,45 @@ button {
 
 /* ------- welcome screen ------------------------------------------------ */
 .welcome {
+  position: relative;
   align-items: center;
   justify-content: center;
   padding: 32px;
-  background:
-    radial-gradient(ellipse at 50% 40%, rgba(122, 60, 255, 0.14), transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(60, 20, 140, 0.18), transparent 60%),
-    var(--bg);
+  background: var(--bg);
+}
+
+/* Frosted-glass hero: a softly blurred photo layer, with a translucent
+   tinted "frost" pane (haze + grain) sitting between it and the text. */
+.welcome::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  background-image: url('/jjk.jpg');
+  background-size: cover;
+  background-position: center 25%;
+  filter: blur(1.5px) saturate(1.15) brightness(0.94);
+  z-index: 0;
+}
+
+.welcome::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 50% 45%, transparent 48%, rgba(6, 4, 8, 0.36) 100%),
+    linear-gradient(rgba(24, 14, 18, 0.14), rgba(24, 14, 18, 0.14)),
+    radial-gradient(ellipse at 50% 38%, rgba(196, 48, 61, 0.12), transparent 62%),
+    radial-gradient(ellipse at 50% 28%, rgba(244, 236, 236, 0.04), transparent 55%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.4'/></svg>");
+  background-size: cover, cover, cover, cover, 120px 120px;
+  background-position: center, center, center, center, 0 0;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  z-index: 1;
 }
 
 .welcome-inner {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -709,25 +722,6 @@ button {
   100% { opacity: 1; transform: translateY(0);   }
 }
 
-.welcome-logo {
-  width: 132px;
-  height: 144px;
-  display: block;
-  filter: drop-shadow(0 0 22px var(--accent-glow));
-  animation: welcome-glow 4.5s var(--ease) infinite;
-}
-
-@keyframes welcome-glow {
-  0%, 100% { filter: drop-shadow(0 0 18px var(--accent-glow)); }
-  50%      { filter: drop-shadow(0 0 34px var(--accent-glow-2)); }
-}
-
-.welcome-logo svg {
-  width: 100%;
-  height: 100%;
-  color: var(--accent-hi);
-}
-
 .welcome-wordmark {
   display: flex;
   flex-direction: column;
@@ -740,21 +734,23 @@ button {
   letter-spacing: 0.14em;
   line-height: 1;
   color: var(--text);
-  text-shadow: 0 0 24px var(--accent-glow);
+  text-shadow: 0 2px 14px rgba(6, 4, 8, 0.85), 0 0 24px var(--accent-glow);
 }
 
 .welcome-tagline {
-  color: var(--text-muted);
+  color: #FFFFFF;
   letter-spacing: 0.28em;
   font-size: 11px;
+  text-shadow: 0 1px 8px rgba(6, 4, 8, 0.9);
 }
 
 .welcome-lede {
   margin: 0;
-  color: var(--text-muted);
+  color: #FFFFFF;
   font-size: 15px;
   line-height: 1.6;
   max-width: 380px;
+  text-shadow: 0 1px 10px rgba(6, 4, 8, 0.9);
 }
 
 .welcome-cta {
@@ -768,11 +764,12 @@ button {
 }
 
 .welcome-hint {
-  color: var(--text-dim);
+  color: #FFFFFF;
   font-size: 12px;
   font-family: var(--font-display);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-shadow: 0 1px 8px rgba(6, 4, 8, 0.9);
 }
 
 /* ------- reduced motion ------------------------------------------------ */
@@ -781,7 +778,6 @@ button {
   .camera-frame[data-recording="true"],
   .gesture-card[data-recording="true"],
   .stage-status .rec-dot,
-  .welcome-logo,
   .welcome-inner { animation: none; }
   * { transition-duration: 0.01ms !important; }
 }

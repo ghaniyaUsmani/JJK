@@ -11,21 +11,10 @@ function currentRoute() {
   return ROUTES.includes(hash) ? hash : DEFAULT_ROUTE;
 }
 
-function brandSvg() {
-  return `
-    <svg class="brand-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z"
-            stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-      <circle cx="12" cy="12" r="2.4" fill="currentColor"/>
-    </svg>
-  `;
-}
-
 export function mountAppShell(root, model) {
   root.innerHTML = `
     <nav class="app-nav" aria-label="Primary" data-hidden="false">
       <button class="brand" data-action="home" aria-label="Home">
-        ${brandSvg()}
         <span>JJK</span>
         <span class="slash">/</span>
         <span class="brand-sub">Hand Sign Techniques</span>
